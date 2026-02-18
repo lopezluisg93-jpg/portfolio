@@ -1,1 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LivePass CRM Strategy | Luis Lopez - CRM Portfolio</title>
+    <meta name="description" content="CRM case study showcasing lifecycle marketing strategy for ticketing platform">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e1e8ed;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1E3A5F;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #5a6c7d;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+        
+        /* Main container */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 0 40px;
+        }
+        
+        /* Hero section */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 64px;
+            font-weight: 800;
+            color: #1E3A5F;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            color: #5a6c7d;
+            font-weight: 500;
+            margin-bottom: 40px;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-value {
+            font-size: 48px;
+            font-weight: 800;
+            color: #1E3A5F;
+            display: block;
+        }
+        
+        .hero-stat-label {
+            font-size: 14px;
+            color: #5a6c7d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        
+        /* Section */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1E3A5F;
+            margin-bottom: 16px;
+            padding-left: 20px;
+            border-left: 6px solid #FF6B35;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: #5a6c7d;
+            margin-bottom: 50px;
+            padding-left: 26px;
+        }
+        
+        /* Problem cards */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .problem-card {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border-color: #FFD4C8;
+        }
+        
+        .problem-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .problem-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1E3A5F;
+            line-height: 1.5;
+        }
+        
+        /* Segments */
+        .segments-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 50px 0;
+        }
+        
+        .segment-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 3px solid;
+            transition: all 0.3s;
+        }
+        
+        .segment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+        
+        .segment-1 { border-color: #E74C3C; }
+        .segment-2 { border-color: #F39C12; }
+        .segment-3 { border-color: #FF6B35; }
+        .segment-4 { border-color: #4CAF50; }
+        
+        .segment-percentage {
+            font-size: 56px;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .segment-1 .segment-percentage { color: #E74C3C; }
+        .segment-2 .segment-percentage { color: #F39C12; }
+        .segment-3 .segment-percentage { color: #FF6B35; }
+        .segment-4 .segment-percentage { color: #4CAF50; }
+        
+        .segment-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1E3A5F;
+            margin-bottom: 15px;
+        }
+        
+        .segment-detail {
+            font-size: 14px;
+            color: #5a6c7d;
+            line-height: 1.6;
+        }
+        
+        /* Opportunity banner */
+        .opportunity-banner {
+            background: #1E3A5F;
+            border-radius: 24px;
+            padding: 60px;
+            text-align: center;
+            color: white;
+            margin: 60px 0;
+        }
+        
+        .opportunity-amount {
+            font-size: 80px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        
+        .opportunity-text {
+            font-size: 24px;
+            font-weight: 500;
+        }
+        
+        .opportunity-breakdown {
+            font-size: 16px;
+            margin-top: 12px;
+            opacity: 0.85;
+        }
+        
+        /* Insights */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .insight-card {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+        
+        .insight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border-color: #FF6B35;
+        }
+        
+        .insight-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .insight-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1E3A5F;
+            margin-bottom: 15px;
+        }
+        
+        .insight-finding {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FF6B35;
+            margin-bottom: 12px;
+        }
+        
+        .insight-description {
+            font-size: 15px;
+            color: #5a6c7d;
+            line-height: 1.7;
+        }
+        
+        /* Funnel */
+        .funnel-container {
+            margin: 50px 0;
+        }
+        
+        .funnel-stage {
+            background: white;
+            border: 3px solid #e1e8ed;
+            border-radius: 16px;
+            padding: 30px 40px;
+            margin: 20px auto;
+            transition: all 0.3s;
+        }
+        
+        .funnel-stage:hover {
+            transform: translateX(15px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .funnel-stage-1 { width: 100%; border-left: 8px solid #E74C3C; }
+        .funnel-stage-2 { width: 90%; border-left: 8px solid #F39C12; }
+        .funnel-stage-3 { width: 80%; border-left: 8px solid #FF6B35; }
+        .funnel-stage-4 { width: 70%; border-left: 8px solid #4CAF50; }
+        
+        .funnel-label {
+            font-size: 26px;
+            font-weight: 700;
+            color: #1E3A5F;
+            margin-bottom: 8px;
+        }
+        
+        .funnel-strategy {
+            font-size: 16px;
+            color: #5a6c7d;
+            font-weight: 500;
+        }
+        
+        .funnel-arrow {
+            text-align: center;
+            font-size: 36px;
+            color: #FF6B35;
+            margin: 12px 0;
+        }
+        
+        /* Email showcase */
+        .email-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+        }
+        
+        .email-container {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+        
+        .email-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border-color: #FF6B35;
+        }
+        
+        .email-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1E3A5F;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .email-header::before {
+            content: "📧";
+            margin-right: 12px;
+            font-size: 24px;
+        }
+        
+        .device-mockup {
+            background: #1E3A5F;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .device-screen {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            font-size: 13px;
+            line-height: 1.6;
+            min-height: 320px;
+        }
+        
+        .email-subject {
+            font-weight: 700;
+            color: #1E3A5F;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .email-body p {
+            margin-bottom: 12px;
+            color: #2c3e50;
+        }
+        
+        .email-highlight {
+            background: #FFF5F2;
+            border-left: 4px solid #FF6B35;
+            padding: 12px;
+            margin: 15px 0;
+            font-weight: 600;
+            font-size: 12px;
+        }
+        
+        .email-cta {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+        
+        .email-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #5a6c7d;
+            font-style: italic;
+            border-left: 3px solid #FF6B35;
+        }
+        
+        /* Metrics */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 2px solid #e1e8ed;
+            border-radius: 16px;
+            padding: 35px;
+            transition: all 0.3s;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+            border-color: #4CAF50;
+        }
+        
+        .metric-name {
+            font-size: 14px;
+            color: #5a6c7d;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .metric-comparison {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .metric-old {
+            font-size: 40px;
+            font-weight: 700;
+            color: #95a5a6;
+        }
+        
+        .metric-arrow {
+            font-size: 32px;
+            color: #FF6B35;
+        }
+        
+        .metric-new {
+            font-size: 52px;
+            font-weight: 800;
+            color: #4CAF50;
+        }
+        
+        .metric-badge {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 15px;
+            display: inline-block;
+        }
+        
+        /* Revenue chart */
+        .revenue-section {
+            margin: 50px 0;
+        }
+        
+        .chart-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .chart-row:hover {
+            transform: translateX(10px);
+        }
+        
+        .chart-label {
+            width: 220px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1E3A5F;
+        }
+        
+        .chart-bar-container {
+            flex: 1;
+        }
+        
+        .chart-bar {
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .chart-bar:hover {
+            transform: scaleX(1.03);
+        }
+        
+        .chart-bar-1 { background: #3498db; }
+        .chart-bar-2 { background: #9b59b6; }
+        .chart-bar-3 { background: #e74c3c; }
+        .chart-bar-4 { background: #f39c12; }
+        .chart-bar-5 { background: #1abc9c; }
+        .chart-bar-6 { background: #FF6B35; }
+        
+        .chart-total {
+            margin-top: 35px;
+            padding-top: 35px;
+            border-top: 4px solid #e1e8ed;
+        }
+        
+        .chart-total .chart-bar {
+            height: 60px;
+            background: #1E3A5F;
+            font-size: 20px;
+        }
+        
+        /* ROI Banner */
+        .roi-banner {
+            background: #4CAF50;
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            color: white;
+            margin: 60px 0;
+        }
+        
+        .roi-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .roi-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .roi-stat {
+            text-align: center;
+        }
+        
+        .roi-value {
+            font-size: 56px;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .roi-label {
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+        
+        .roi-note {
+            margin-top: 30px;
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1E3A5F;
+            color: white;
+            padding: 60px 0;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+        
+        .footer-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .footer-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+        
+        .footer-copyright {
+            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container { padding: 0 20px; }
+            .hero-title { font-size: 40px; }
+            .problem-grid, .segments-grid, .insights-grid, .email-grid, .metrics-grid { grid-template-columns: 1fr; }
+            .roi-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="nav-title">Luis Lopez | CRM Portfolio</div>
+            <div class="nav-links">
+                <a href="#problem">Problem</a>
+                <a href="#strategy">Strategy</a>
+                <a href="#execution">Execution</a>
+                <a href="#impact">Impact</a>
+            </div>
+        </div>
+    </nav>
 
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1 class="hero-title">LivePass CRM Strategy</h1>
+            <p class="hero-subtitle">Driving Premium Conversion & Retention Through Behavioral Intelligence</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-value">2.5M</span>
+                    <span class="hero-stat-label">Registered Users</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">800K</span>
+                    <span class="hero-stat-label">Active Buyers</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">65K</span>
+                    <span class="hero-stat-label">Premium Members</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Problem Section -->
+        <section id="problem">
+            <h2 class="section-title">The Business Problem</h2>
+            <p class="section-subtitle">LivePass, a B2C ticketing platform, faces significant retention challenges</p>
+            
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <span class="problem-icon">📉</span>
+                    <p class="problem-text">85% of users never exceed 1-2 purchases per year</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">💸</span>
+                    <p class="problem-text">Only 3.2% convert to premium membership ($9.99/mo)</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🚪</span>
+                    <p class="problem-text">42% premium churn rate in first year</p>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 80px;">Current User Segments</h3>
+            
+            <div class="segments-grid">
+                <div class="segment-card segment-1">
+                    <span class="segment-percentage">55%</span>
+                    <div class="segment-label">One-Timers</div>
+                    <div class="segment-detail">1 purchase/year<br>LTV: $78</div>
+                </div>
+                <div class="segment-card segment-2">
+                    <span class="segment-percentage">30%</span>
+                    <div class="segment-label">Casual Buyers</div>
+                    <div class="segment-detail">2-4 purchases/year<br>LTV: $195</div>
+                </div>
+                <div class="segment-card segment-3">
+                    <span class="segment-percentage">7%</span>
+                    <div class="segment-label">Enthusiasts</div>
+                    <div class="segment-detail">5+ purchases/year<br>LTV: $450</div>
+                </div>
+                <div class="segment-card segment-4">
+                    <span class="segment-percentage">8%</span>
+                    <div class="segment-label">Premium</div>
+                    <div class="segment-detail">6+ purchases/year<br>LTV: $420</div>
+                </div>
+            </div>
+
+            <div class="opportunity-banner">
+                <div class="opportunity-amount">$8.4M</div>
+                <div class="opportunity-text">Revenue Opportunity in Year 1</div>
+                <div class="opportunity-breakdown">Through behavioral intelligence + lifecycle automation</div>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section id="strategy">
+            <h2 class="section-title">Strategic Insights</h2>
+            <p class="section-subtitle">Behavioral intelligence driving revenue growth beyond traditional lifecycle</p>
+            
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <span class="insight-icon">👥</span>
+                    <h3 class="insight-title">Group Purchase Behavior</h3>
+                    <p class="insight-finding">60% of purchases are 2+ tickets</p>
+                    <p class="insight-description">Group buyers pay 3-4x more fees per transaction. Premium ROI is 5x better for this segment vs. solo buyers. Opportunity: Target group organizers with fee-savings messaging at point of purchase.</p>
+                </div>
+                <div class="insight-card">
+                    <span class="insight-icon">💰</span>
+                    <h3 class="insight-title">Price Behavior Patterns</h3>
+                    <p class="insight-finding">Users have distinct price comfort zones</p>
+                    <p class="insight-description">40% occasionally explore outside their typical range. Traditional single-tier recommendations miss cross-sell opportunities. Strategy: Bidirectional recommendations showing both premium and budget options.</p>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 80px;">Lifecycle Framework</h3>
+            <p class="section-subtitle">Moving users up the engagement ladder</p>
+            
+            <div class="funnel-container">
+                <div class="funnel-stage funnel-stage-1">
+                    <div class="funnel-label">One-Timers (55%)</div>
+                    <div class="funnel-strategy">Welcome Series + Win-Back campaigns</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-stage funnel-stage-2">
+                    <div class="funnel-label">Casual Buyers (30%)</div>
+                    <div class="funnel-strategy">Cross-Sell + Nurture programs</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-stage funnel-stage-3">
+                    <div class="funnel-label">Enthusiasts (7%)</div>
+                    <div class="funnel-strategy">Premium Conversion journey</div>
+                </div>
+                <div class="funnel-arrow">↓</div>
+                <div class="funnel-stage funnel-stage-4">
+                    <div class="funnel-label">Premium Members (8%)</div>
+                    <div class="funnel-strategy">Retention & Loyalty programs</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Execution Section -->
+        <section id="execution">
+            <h2 class="section-title">Strategic Execution</h2>
+            <p class="section-subtitle">Personalized messaging at scale using behavioral triggers</p>
+            
+            <div class="email-grid">
+                <div class="email-container">
+                    <div class="email-header">Group Buyer → Premium</div>
+                    <div class="device-mockup">
+                        <div class="device-screen">
+                            <div class="email-subject">You just paid $36 in fees... for one night out</div>
+                            <div class="email-body">
+                                <p><strong>Hi Sarah,</strong></p>
+                                <p>You bought 4 tickets to Arctic Monkeys (nice choice for the crew 🎉)</p>
+                                <div class="email-highlight">
+                                    <strong>Here's what just happened:</strong><br>
+                                    • Ticket price: $70 × 4 = $280<br>
+                                    • Service fees: $9 × 4 = <span style="color: #FF6B35;"><strong>$36</strong></span>
+                                </div>
+                                <p style="font-size: 12px;">If you were Premium ($9.99/mo):<br>Service fees: $0 × 4 = $0</p>
+                                <div class="email-cta">Stop Paying Group Fees</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="email-note">
+                        <strong>Strategy:</strong> Trigger on 3+ ticket purchase. Show immediate fee impact vs. Premium cost. Converts at 140% higher rate than generic messaging.
+                    </div>
+                </div>
+                
+                <div class="email-container">
+                    <div class="email-header">Price Behavior Intelligence</div>
+                    <div class="device-mockup">
+                        <div class="device-screen">
+                            <div class="email-subject">How was Coldplay? 🎵</div>
+                            <div class="email-body">
+                                <p><strong>Hey Marcus,</strong></p>
+                                <p>Hope you had an amazing time at Coldplay!</p>
+                                <p style="font-size: 12px;">We noticed this was a bigger show than your usual – sometimes the best nights are worth it.</p>
+                                <div style="margin: 12px 0; font-size: 12px;">
+                                    <strong>More premium shows:</strong><br>
+                                    • The Killers at MSG – $110<br>
+                                    • Imagine Dragons – $125
+                                </div>
+                                <div style="margin: 12px 0; font-size: 12px;">
+                                    <strong>Or your usual style:</strong><br>
+                                    • Local Natives – $38<br>
+                                    • Japanese Breakfast – $42
+                                </div>
+                                <p style="font-size: 12px;">Either way, we've got you covered.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="email-note">
+                        <strong>Strategy:</strong> D+1 post-event when user exceeded typical price range. Show both premium AND budget options. +23% engagement vs. single-tier recommendations.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact Section -->
+        <section id="impact">
+            <h2 class="section-title">Projected Impact</h2>
+            <p class="section-subtitle">6-month business case with measurable ROI</p>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-name">D7 Retention</div>
+                    <div class="metric-comparison">
+                        <span class="metric-old">22%</span>
+                        <span class="metric-arrow">→</span>
+                        <span class="metric-new">35%</span>
+                    </div>
+                    <span class="metric-badge">+59% Uplift</span>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-name">Repeat Purchase D90</div>
+                    <div class="metric-comparison">
+                        <span class="metric-old">18%</span>
+                        <span class="metric-arrow">→</span>
+                        <span class="metric-new">28%</span>
+                    </div>
+                    <span class="metric-badge">+56% Uplift</span>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-name">Premium Conversion</div>
+                    <div class="metric-comparison">
+                        <span class="metric-old">3.2%</span>
+                        <span class="metric-arrow">→</span>
+                        <span class="metric-new">5.0%</span>
+                    </div>
+                    <span class="metric-badge">+56% Uplift</span>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-name">Premium Churn</div>
+                    <div class="metric-comparison">
+                        <span class="metric-old">42%</span>
+                        <span class="metric-arrow">→</span>
+                        <span class="metric-new">28%</span>
+                    </div>
+                    <span class="metric-badge">-33% Reduction</span>
+                </div>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 80px;">Revenue Breakdown</h3>
+            
+            <div class="revenue-section">
+                <div class="chart-row">
+                    <div class="chart-label">One-Timer Activation</div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar chart-bar-1" style="width: 33%;">+$2.8M</div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">Casual Frequency</div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar chart-bar-2" style="width: 23%;">+$1.9M</div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">Premium Conversion</div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar chart-bar-3" style="width: 12%;">+$1.0M</div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">Premium Retention</div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar chart-bar-4" style="width: 10%;">+$850K</div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">Group Buyer Strategy</div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar chart-bar-5" style="width: 14%;">+$1.2M</div>
+                    </div>
+                </div>
+                <div class="chart-row">
+                    <div class="chart-label">Price Intelligence</div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar chart-bar-6" style="width: 8%;">+$700K</div>
+                    </div>
+                </div>
+                
+                <div class="chart-row chart-total">
+                    <div class="chart-label"><strong>TOTAL YEAR 1</strong></div>
+                    <div class="chart-bar-container">
+                        <div class="chart-bar" style="width: 100%;">+$8.4M</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="roi-banner">
+                <div class="roi-title">Return on Investment</div>
+                <div class="roi-stats">
+                    <div class="roi-stat">
+                        <span class="roi-value">$90K</span>
+                        <span class="roi-label">Investment</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span class="roi-value">$8.4M</span>
+                        <span class="roi-label">Year 1 Return</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span class="roi-value">93x</span>
+                        <span class="roi-label">ROI Multiple</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span class="roi-value">&lt;1mo</span>
+                        <span class="roi-label">Payback Period</span>
+                    </div>
+                </div>
+                <div class="roi-note">
+                    <strong>Strategic differentiation:</strong> Behavioral intelligence drives $1.9M incremental vs. traditional lifecycle approach
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h2 class="footer-title">Luis Lopez</h2>
+            <p class="footer-subtitle">CRM & Lifecycle Marketing Strategist</p>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
+                <a href="mailto:your.email@example.com">Email</a>
+                <a href="https://github.com/lopezluisg93-jpg" target="_blank">GitHub</a>
+            </div>
+            <p class="footer-copyright">© 2026 Luis Lopez. Built with strategic thinking.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
