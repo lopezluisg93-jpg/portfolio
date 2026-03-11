@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthFlow — Luis Lopez Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F5F1EA;
+            --cream-dark: #EDE8DF;
+            --cream-darker: #E4DDD1;
+            --warm-black: #1A1510;
+            --warm-gray: #6B6358;
+            --warm-gray-light: #A09890;
+            --olive: #4D6B3C;
+            --olive-light: #5E7F4A;
+            --olive-pale: #EBF0E6;
+            --white: #FDFCF9;
+            --border: #DDD8CE;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--cream);
+            color: var(--warm-black);
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px; line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(245,241,234,0.92); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 48px; height: 60px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-brand { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: var(--warm-black); text-decoration: none; }
+        .nav-sections { display: flex; gap: 28px; }
+        .nav-sections a { font-size: 13px; font-weight: 600; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
+        .nav-sections a:hover { color: var(--warm-black); }
+        .nav-back { font-size: 13px; font-weight: 700; color: var(--olive); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+
+        .hero {
+            padding: 120px 48px 80px;
+            background: var(--warm-black); color: var(--cream);
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -100px; right: -100px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(77,107,60,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner { max-width: 1100px; margin: 0 auto; }
+        .hero-eyebrow {
+            font-size: 11px; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--olive-light);
+            margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+        }
+        .hero-eyebrow::before { content: ''; width: 28px; height: 1.5px; background: var(--olive-light); }
+        .hero-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(56px, 8vw, 96px); font-weight: 900;
+            color: var(--cream); line-height: 0.95; letter-spacing: -3px; margin-bottom: 24px;
+        }
+        .hero-subtitle { font-size: 18px; color: rgba(245,241,234,0.6); line-height: 1.7; max-width: 620px; margin-bottom: 56px; }
+        .hero-stats { display: flex; gap: 0; border-top: 1px solid rgba(245,241,234,0.1); padding-top: 40px; }
+        .hero-stat { flex: 1; padding-right: 40px; border-right: 1px solid rgba(245,241,234,0.1); margin-right: 40px; }
+        .hero-stat:last-child { border-right: none; margin-right: 0; }
+        .hero-stat-val { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 900; color: var(--cream); line-height: 1; letter-spacing: -1px; }
+        .hero-stat-label { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,241,234,0.4); margin-top: 6px; }
+
+        .content { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+        .section { margin-bottom: 80px; }
+        .section-header { display: flex; align-items: flex-start; gap: 32px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+        .section-num { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700; color: var(--olive); letter-spacing: 1px; padding-top: 6px; min-width: 28px; }
+        .section-title { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 900; color: var(--warm-black); letter-spacing: -1px; line-height: 1.1; }
+        .section-nav-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray-light); margin-top: 6px; }
+
+        .prose { font-size: 17px; line-height: 1.85; color: var(--warm-gray); max-width: 720px; }
+        .prose strong { color: var(--warm-black); font-weight: 700; }
+        .prose p { margin-bottom: 20px; }
+        .prose p:last-child { margin-bottom: 0; }
+
+        .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+        .problem-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.2s; }
+        .problem-card:hover { border-color: var(--olive); }
+        .problem-card-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700; color: var(--warm-black); margin-bottom: 10px; letter-spacing: -0.3px; }
+        .problem-card-body { font-size: 14px; color: var(--warm-gray); line-height: 1.75; }
+        .problem-card-stat { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; color: var(--olive); margin-bottom: 6px; letter-spacing: -0.5px; }
+
+        .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+        .strategy-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+        .strategy-num { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; color: var(--cream-darker); line-height: 1; margin-bottom: 4px; letter-spacing: -2px; }
+        .strategy-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: var(--warm-black); margin-bottom: 12px; letter-spacing: -0.3px; }
+        .strategy-body { font-size: 14px; color: var(--warm-gray); line-height: 1.75; }
+        .strategy-body strong { color: var(--warm-black); }
+        .strategy-sequence {
+            margin-top: 14px; background: var(--cream-dark);
+            border-radius: 8px; padding: 12px 16px;
+            font-size: 12px; color: var(--warm-gray); font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .email-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+        .email-label { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--olive); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .email-label::before { content: ''; width: 20px; height: 1.5px; background: var(--olive); }
+        .email-mock { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(26,21,16,0.06); }
+        .email-mock-header { background: var(--cream-dark); border-bottom: 1px solid var(--border); padding: 16px 20px; }
+        .email-mock-field { font-size: 12px; color: var(--warm-gray); margin-bottom: 4px; display: flex; gap: 8px; }
+        .email-mock-field:last-child { margin-bottom: 0; }
+        .email-mock-field strong { color: var(--warm-black); min-width: 40px; }
+        .email-mock-body { padding: 24px; }
+        .email-mock-subject { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700; color: var(--warm-black); margin-bottom: 16px; letter-spacing: -0.3px; }
+        .email-mock-text { font-size: 13px; color: var(--warm-gray); line-height: 1.75; margin-bottom: 12px; }
+        .email-mock-text strong { color: var(--warm-black); }
+        .email-mock-highlight { background: var(--olive-pale); border-left: 3px solid var(--olive); padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: var(--warm-black); font-weight: 600; margin: 16px 0; line-height: 1.6; }
+        .email-mock-provider { background: var(--cream-dark); border-radius: 8px; padding: 14px 16px; margin: 12px 0; }
+        .email-mock-provider-name { font-size: 14px; font-weight: 700; color: var(--warm-black); }
+        .email-mock-provider-detail { font-size: 12px; color: var(--warm-gray); margin-top: 4px; }
+        .email-mock-cta { display: inline-block; background: var(--warm-black); color: var(--cream); padding: 11px 24px; font-size: 13px; font-weight: 700; border-radius: 6px; margin-top: 8px; }
+        .email-note { margin-top: 14px; font-size: 13px; color: var(--warm-gray); font-style: italic; padding-left: 4px; }
+
+        .metrics-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+        .metric-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px 28px; display: grid; grid-template-columns: 220px auto 1fr; align-items: center; gap: 24px; transition: border-color 0.2s; }
+        .metric-card:hover { border-color: var(--olive); }
+        .metric-label { font-size: 13px; font-weight: 700; color: var(--warm-black); margin-bottom: 2px; }
+        .metric-sublabel { font-size: 11px; color: var(--warm-gray-light); font-weight: 500; }
+        .metric-numbers { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+        .metric-before { font-size: 14px; color: var(--warm-gray-light); font-weight: 600; }
+        .metric-arrow { color: var(--olive); font-size: 16px; }
+        .metric-after { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 900; color: var(--warm-black); letter-spacing: -0.5px; }
+        .metric-change { display: inline-block; background: var(--olive-pale); color: var(--olive); padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+        .metric-interp { font-size: 13px; color: var(--warm-gray); line-height: 1.6; border-left: 2px solid var(--border); padding-left: 20px; }
+
+        footer { background: var(--warm-black); padding: 48px; display: flex; align-items: center; justify-content: space-between; }
+        .footer-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: var(--cream); }
+        .footer-sub { font-size: 13px; color: rgba(245,241,234,0.4); margin-top: 4px; }
+        .footer-back { display: flex; align-items: center; gap: 8px; color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 700; background: rgba(245,241,234,0.08); border: 1px solid rgba(245,241,234,0.12); padding: 12px 24px; border-radius: 8px; transition: background 0.2s; }
+        .footer-back:hover { background: rgba(77,107,60,0.3); }
+
+        .tech-stack {
+            margin-top: 48px; padding: 20px 28px;
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+        }
+        .tech-stack-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--warm-gray-light);
+            flex-shrink: 0;
+        }
+        .tech-tag {
+            background: var(--cream-dark); border: 1px solid var(--border);
+            color: var(--warm-gray); padding: 5px 14px;
+            border-radius: 20px; font-size: 12px; font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            nav { padding: 0 24px; }
+            .content { padding: 48px 24px; }
+            .hero { padding: 100px 24px 60px; }
+            .problem-grid, .strategy-grid, .email-pair { grid-template-columns: 1fr; }
+            .metric-card { grid-template-columns: 1fr; gap: 12px; }
+            .metric-interp { border-left: none; border-top: 2px solid var(--border); padding-left: 0; padding-top: 12px; }
+            footer { padding: 32px 24px; flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-brand">Luis Lopez</a>
+    <div class="nav-sections">
+        <a href="#problem">Problem</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#execution">Execution</a>
+        <a href="#impact">Impact</a>
+    </div>
+    <a href="index.html" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Portfolio
+    </a>
+</nav>
+
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">Telemedicine · Healthcare Tech</div>
+        <h1 class="hero-title">HealthFlow</h1>
+        <p class="hero-subtitle">A telemedicine platform where most patients never came back — not because of the product, but because nobody reached out at the right moment.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-val">$49</div>
+                <div class="hero-stat-label">Pay-Per-Visit</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-val">22%</div>
+                <div class="hero-stat-label">Repeat Visit Rate</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-val">200+</div>
+                <div class="hero-stat-label">Healthcare Providers</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+
+    <!-- PROBLEM -->
+    <div class="section" id="problem">
+        <div class="section-header">
+            <div class="section-num">01</div>
+            <div>
+                <div class="section-nav-label">Problem</div>
+                <h2 class="section-title">The Business Problem</h2>
+            </div>
+        </div>
+
+        <div class="prose">
+            <p>HealthFlow's pay-per-visit model only works if patients return. Most didn't.</p>
+        </div>
+
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-card-stat">82%</div>
+                <div class="problem-card-title">The annual wellness gap</div>
+                <div class="problem-card-body">Patients need annual wellness exams to renew prescriptions, but 82% didn't proactively rebook. They'd lose medication access, get frustrated, and disappear.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-stat">89%</div>
+                <div class="problem-card-title">Bad experience churn</div>
+                <div class="problem-card-body">When a visit went poorly, 89% of those patients never returned. No win-back existed. No second chance was offered.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-stat">32%</div>
+                <div class="problem-card-title">One-size-fits-all follow-up</div>
+                <div class="problem-card-body">A patient treated for a UTI received the same follow-up as someone managing diabetes. The result: a 32% unsubscribe rate from messaging that didn't apply to them.</div>
+            </div>
+            <div class="problem-card">
+                <div class="problem-card-stat">18%</div>
+                <div class="problem-card-title">State licensing friction</div>
+                <div class="problem-card-body">18% of bookings ended in cancellation because the chosen provider couldn't prescribe in the patient's state. The platform didn't prevent this — it just let it happen.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STRATEGY -->
+    <div class="section" id="strategy">
+        <div class="section-header">
+            <div class="section-num">02</div>
+            <div>
+                <div class="section-nav-label">Strategy</div>
+                <h2 class="section-title">Four interventions, each targeting a specific failure point</h2>
+            </div>
+        </div>
+
+        <div class="strategy-grid">
+            <div class="strategy-card">
+                <div class="strategy-num">01</div>
+                <div class="strategy-title">Annual wellness reactivation</div>
+                <div class="strategy-body">A journey triggered 60 days before prescription expiration — not when it's already too late.</div>
+                <div class="strategy-sequence">D-60: "Time to renew" → D-30: "Schedule now" → D-7: SMS urgency → Post-expiration: Recovery flow</div>
+            </div>
+            <div class="strategy-card">
+                <div class="strategy-num">02</div>
+                <div class="strategy-title">Bad experience win-back</div>
+                <div class="strategy-body">An NPS below 7 triggers a provider re-match sequence. Not an apology — a solution. Different doctor, better fit.</div>
+            </div>
+            <div class="strategy-card">
+                <div class="strategy-num">03</div>
+                <div class="strategy-title">Acute vs. chronic segmentation</div>
+                <div class="strategy-body">Classified at first visit. One-time conditions get a single relevant follow-up. Chronic conditions enter a recurring care journey with proactive check-ins.</div>
+            </div>
+            <div class="strategy-card">
+                <div class="strategy-num">04</div>
+                <div class="strategy-title">Provider-state intelligence</div>
+                <div class="strategy-body">Pre-booking validation surfaces only compatible providers. If the preferred doctor isn't available in the patient's state, alternatives appear automatically.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXECUTION -->
+    <div class="section" id="execution">
+        <div class="section-header">
+            <div class="section-num">03</div>
+            <div>
+                <div class="section-nav-label">Execution</div>
+                <h2 class="section-title">Behavioral triggers at critical moments</h2>
+            </div>
+        </div>
+
+        <div class="email-pair">
+            <div>
+                <div class="email-label">Bad Experience Win-Back</div>
+                <div class="email-mock">
+                    <div class="email-mock-header">
+                        <div class="email-mock-field"><strong>To:</strong> Maria</div>
+                        <div class="email-mock-field"><strong>From:</strong> HealthFlow</div>
+                    </div>
+                    <div class="email-mock-body">
+                        <div class="email-mock-subject">We'd like to make this right</div>
+                        <div class="email-mock-text">Hi Maria,<br><br>We're sorry your last visit wasn't what you hoped for. That's not the experience we want for you — and we want to help you find the right fit.</div>
+                        <div class="email-mock-provider">
+                            <div class="email-mock-provider-name">Dr. Jennifer Kim — Suggested match</div>
+                            <div class="email-mock-provider-detail">⭐ 4.9/5 · Primary Care, Women's Health · Available tomorrow 2pm</div>
+                        </div>
+                        <div class="email-mock-highlight">What matters most to you?<br>Shorter wait times · Female providers · Spanish-speaking doctors</div>
+                        <div class="email-mock-cta">Find Your Provider</div>
+                    </div>
+                </div>
+                <p class="email-note">Triggered by post-visit NPS below 7. Acknowledges the experience before offering a path forward.</p>
+            </div>
+
+            <div>
+                <div class="email-label">Prescription Renewal Urgency</div>
+                <div class="email-mock">
+                    <div class="email-mock-header">
+                        <div class="email-mock-field"><strong>To:</strong> Robert</div>
+                        <div class="email-mock-field"><strong>From:</strong> HealthFlow</div>
+                    </div>
+                    <div class="email-mock-body">
+                        <div class="email-mock-subject">⚠️ Your prescription expires in 7 days</div>
+                        <div class="email-mock-text">Hi Robert,<br><br>Your <strong>[Medication Name]</strong> prescription expires on <strong>March 15</strong>.</div>
+                        <div class="email-mock-highlight">Same doctor, easy renewal:<br>Dr. Martinez has appointments this week.</div>
+                        <div class="email-mock-text"><strong>Available slots:</strong><br>Wednesday 3:00 PM<br>Thursday 10:30 AM<br>Friday 4:00 PM</div>
+                        <div class="email-mock-cta">Book Wellness Exam ($75)</div>
+                    </div>
+                </div>
+                <p class="email-note">Sent 7 days before expiration. Familiar provider, specific slots, zero friction.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPACT -->
+    <div class="section" id="impact">
+        <div class="section-header">
+            <div class="section-num">04</div>
+            <div>
+                <div class="section-nav-label">Impact</div>
+                <h2 class="section-title">Results after 6 months</h2>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">Repeat Visit Rate</div>
+                    <div class="metric-sublabel">Patients returning for a second visit</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">22%</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">45%</span>
+                    <span class="metric-change">+105%</span>
+                </div>
+                <div class="metric-interp">Proactive outreach at the right moment — before patients forgot or lost access — doubled the rate of return visits.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">Wellness Completion</div>
+                    <div class="metric-sublabel">Annual exams completed before expiration</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">18%</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">42%</span>
+                    <span class="metric-change">+133%</span>
+                </div>
+                <div class="metric-interp">Starting the reactivation journey 60 days early gave patients enough time to act — instead of only reaching them when it was too late.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">Bad Experience Recovery</div>
+                    <div class="metric-sublabel">Dissatisfied patients who returned</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">3%</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">15%</span>
+                    <span class="metric-change">+400%</span>
+                </div>
+                <div class="metric-interp">Offering a specific alternative provider — not a generic apology — gave unhappy patients a concrete reason to try again.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">Unsubscribe Rate</div>
+                    <div class="metric-sublabel">Patients opting out of communications</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">32%</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">8%</span>
+                    <span class="metric-change">−75%</span>
+                </div>
+                <div class="metric-interp">Segmenting acute vs. chronic patients meant every message was relevant to the person receiving it — dramatically cutting opt-outs.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tech-stack">
+        <span class="tech-stack-label">Built with</span>
+        <span class="tech-tag">Braze Canvas</span>
+        <span class="tech-tag">NPS integration</span>
+        <span class="tech-tag">Time-based triggers</span>
+        <span class="tech-tag">Liquid personalization</span>
+        <span class="tech-tag">Acute / chronic segmentation</span>
+        <span class="tech-tag">Email</span>
+        <span class="tech-tag">SMS</span>
+    </div>
+
+</div>
+
+<footer>
+    <div>
+        <div class="footer-name">Luis Lopez</div>
+        <div class="footer-sub">CRM & Lifecycle Marketing</div>
+    </div>
+    <a href="index.html" class="footer-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Portfolio
+    </a>
+</footer>
+
+</body>
+</html>

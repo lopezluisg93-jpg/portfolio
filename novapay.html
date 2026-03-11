@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaPay — Luis Lopez Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600;1,9..144,700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F5F1EA;
+            --cream-dark: #EDE8DF;
+            --cream-darker: #E4DDD1;
+            --warm-black: #1A1510;
+            --warm-gray: #6B6358;
+            --warm-gray-light: #A09890;
+            --olive: #4D6B3C;
+            --olive-light: #5E7F4A;
+            --olive-pale: #EBF0E6;
+            --white: #FDFCF9;
+            --border: #DDD8CE;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--cream); color: var(--warm-black); font-family: 'Manrope', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,241,234,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 48px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-brand { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: var(--warm-black); text-decoration: none; }
+        .nav-sections { display: flex; gap: 28px; }
+        .nav-sections a { font-size: 13px; font-weight: 600; color: var(--warm-gray); text-decoration: none; transition: color 0.2s; }
+        .nav-sections a:hover { color: var(--warm-black); }
+        .nav-back { font-size: 13px; font-weight: 700; color: var(--olive); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+
+        .hero { padding: 120px 48px 80px; background: var(--warm-black); color: var(--cream); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(77,107,60,0.15) 0%, transparent 70%); pointer-events: none; }
+        .hero-inner { max-width: 1100px; margin: 0 auto; }
+        .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--olive-light); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .hero-eyebrow::before { content: ''; width: 28px; height: 1.5px; background: var(--olive-light); }
+        .hero-title { font-family: 'Fraunces', serif; font-size: clamp(56px, 8vw, 96px); font-weight: 900; color: var(--cream); line-height: 0.95; letter-spacing: -3px; margin-bottom: 24px; }
+        .hero-subtitle { font-size: 18px; color: rgba(245,241,234,0.6); line-height: 1.7; max-width: 620px; margin-bottom: 56px; }
+        .hero-stats { display: flex; gap: 0; border-top: 1px solid rgba(245,241,234,0.1); padding-top: 40px; }
+        .hero-stat { flex: 1; padding-right: 40px; border-right: 1px solid rgba(245,241,234,0.1); margin-right: 40px; }
+        .hero-stat:last-child { border-right: none; margin-right: 0; }
+        .hero-stat-val { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 900; color: var(--cream); line-height: 1; letter-spacing: -1px; }
+        .hero-stat-label { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(245,241,234,0.4); margin-top: 6px; }
+
+        .content { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+        .section { margin-bottom: 80px; }
+        .section-header { display: flex; align-items: flex-start; gap: 32px; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+        .section-num { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700; color: var(--olive); letter-spacing: 1px; padding-top: 6px; min-width: 28px; }
+        .section-title { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 900; color: var(--warm-black); letter-spacing: -1px; line-height: 1.1; }
+        .section-nav-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray-light); margin-top: 6px; }
+
+        .prose { font-size: 17px; line-height: 1.85; color: var(--warm-gray); max-width: 720px; }
+        .prose strong { color: var(--warm-black); font-weight: 700; }
+        .prose p { margin-bottom: 20px; }
+        .prose p:last-child { margin-bottom: 0; }
+
+        /* FUNNEL */
+        .funnel { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-top: 32px; }
+        .funnel-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: var(--warm-black); margin-bottom: 24px; letter-spacing: -0.3px; }
+        .funnel-row { display: flex; align-items: center; margin-bottom: 12px; gap: 16px; }
+        .funnel-row:last-child { margin-bottom: 0; }
+        .funnel-label { font-size: 14px; color: var(--warm-gray); min-width: 260px; font-weight: 500; }
+        .funnel-bar-wrap { flex: 1; background: var(--cream-dark); border-radius: 4px; height: 12px; overflow: hidden; }
+        .funnel-bar { height: 12px; border-radius: 4px; background: var(--olive); }
+        .funnel-pct { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 700; color: var(--warm-black); min-width: 40px; text-align: right; }
+
+        /* FRICTION CARDS */
+        .friction-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+        .friction-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: border-color 0.2s; }
+        .friction-card:hover { border-color: var(--olive); }
+        .friction-card-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700; color: var(--warm-black); margin-bottom: 10px; letter-spacing: -0.3px; }
+        .friction-card-body { font-size: 14px; color: var(--warm-gray); line-height: 1.75; }
+
+        /* SEGMENTS */
+        .segments-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 32px; }
+        .seg-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; }
+        .seg-letter { font-family: 'Fraunces', serif; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--olive); margin-bottom: 6px; }
+        .seg-pct { font-family: 'Fraunces', serif; font-size: 40px; font-weight: 900; color: var(--warm-black); line-height: 1; letter-spacing: -1.5px; margin-bottom: 8px; }
+        .seg-title { font-size: 13px; font-weight: 700; color: var(--warm-black); margin-bottom: 6px; }
+        .seg-barrier { font-size: 12px; color: var(--warm-gray); line-height: 1.6; }
+        .seg-excluded { opacity: 0.4; }
+
+        /* CANVAS */
+        .canvas { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+        .canvas-day { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .canvas-day-header { padding: 20px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 20px; }
+        .canvas-day-num { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 700; color: var(--olive); letter-spacing: 1px; min-width: 52px; }
+        .canvas-day-title { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; color: var(--warm-black); letter-spacing: -0.3px; }
+        .canvas-day-tag { font-size: 11px; font-weight: 700; color: var(--warm-gray); background: var(--cream-dark); padding: 4px 10px; border-radius: 20px; margin-left: auto; }
+        .canvas-day-body { padding: 20px 28px; }
+        .canvas-day-desc { font-size: 14px; color: var(--warm-gray); line-height: 1.75; margin-bottom: 16px; }
+        .canvas-messages { display: flex; flex-direction: column; gap: 8px; }
+        .canvas-msg { display: flex; gap: 12px; align-items: flex-start; }
+        .canvas-msg-channel { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--olive); background: var(--olive-pale); padding: 4px 10px; border-radius: 20px; min-width: 60px; text-align: center; flex-shrink: 0; margin-top: 2px; }
+        .canvas-msg-text { font-size: 13px; color: var(--warm-gray); line-height: 1.65; font-style: italic; }
+
+        /* METRICS */
+        .metrics-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+        .metric-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px 28px; display: grid; grid-template-columns: 220px auto 1fr; align-items: center; gap: 24px; transition: border-color 0.2s; }
+        .metric-card:hover { border-color: var(--olive); }
+        .metric-label { font-size: 13px; font-weight: 700; color: var(--warm-black); margin-bottom: 2px; }
+        .metric-sublabel { font-size: 11px; color: var(--warm-gray-light); font-weight: 500; }
+        .metric-numbers { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+        .metric-before { font-size: 14px; color: var(--warm-gray-light); font-weight: 600; }
+        .metric-arrow { color: var(--olive); font-size: 16px; }
+        .metric-after { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 900; color: var(--warm-black); letter-spacing: -0.5px; }
+        .metric-change { display: inline-block; background: var(--olive-pale); color: var(--olive); padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+        .metric-interp { font-size: 13px; color: var(--warm-gray); line-height: 1.6; border-left: 2px solid var(--border); padding-left: 20px; }
+
+        /* LEARNINGS */
+        .learnings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px; }
+        .learning-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+        .learning-num { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; color: var(--cream-darker); line-height: 1; margin-bottom: 4px; letter-spacing: -2px; }
+        .learning-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700; color: var(--warm-black); margin-bottom: 10px; letter-spacing: -0.3px; }
+        .learning-body { font-size: 14px; color: var(--warm-gray); line-height: 1.75; }
+
+        footer { background: var(--warm-black); padding: 48px; display: flex; align-items: center; justify-content: space-between; }
+        .footer-name { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: var(--cream); }
+        .footer-sub { font-size: 13px; color: rgba(245,241,234,0.4); margin-top: 4px; }
+        .footer-back { display: flex; align-items: center; gap: 8px; color: var(--cream); text-decoration: none; font-size: 14px; font-weight: 700; background: rgba(245,241,234,0.08); border: 1px solid rgba(245,241,234,0.12); padding: 12px 24px; border-radius: 8px; transition: background 0.2s; }
+        .footer-back:hover { background: rgba(77,107,60,0.3); }
+
+        .tech-stack {
+            margin-top: 48px; padding: 20px 28px;
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+        }
+        .tech-stack-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--warm-gray-light);
+            flex-shrink: 0;
+        }
+        .tech-tag {
+            background: var(--cream-dark); border: 1px solid var(--border);
+            color: var(--warm-gray); padding: 5px 14px;
+            border-radius: 20px; font-size: 12px; font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            nav { padding: 0 24px; }
+            .content { padding: 48px 24px; }
+            .hero { padding: 100px 24px 60px; }
+            .friction-grid, .segments-grid, .learnings-grid { grid-template-columns: 1fr 1fr; }
+            .metric-card { grid-template-columns: 1fr; gap: 12px; }
+            .metric-interp { border-left: none; border-top: 2px solid var(--border); padding-left: 0; padding-top: 12px; }
+            footer { padding: 32px 24px; flex-direction: column; gap: 20px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-brand">Luis Lopez</a>
+    <div class="nav-sections">
+        <a href="#problem">Problem</a>
+        <a href="#strategy">Strategy</a>
+        <a href="#execution">Execution</a>
+        <a href="#impact">Impact</a>
+    </div>
+    <a href="index.html" class="nav-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Portfolio
+    </a>
+</nav>
+
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-eyebrow">Fintech · Neobank</div>
+        <h1 class="hero-title">NovaPay</h1>
+        <p class="hero-subtitle">A neobank with a fast-growing registration funnel — and 71% of those users never made a single transaction.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-val">71%</div>
+                <div class="hero-stat-label">Never Activated</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-val">29%</div>
+                <div class="hero-stat-label">Activation Rate (Before)</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-val">53%</div>
+                <div class="hero-stat-label">Activation Rate (After)</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+
+    <!-- PROBLEM -->
+    <div class="section" id="problem">
+        <div class="section-header">
+            <div class="section-num">01</div>
+            <div>
+                <div class="section-nav-label">Problem</div>
+                <h2 class="section-title">The Business Problem</h2>
+            </div>
+        </div>
+
+        <div class="prose">
+            <p>The issue wasn't acquisition. NovaPay had no shortage of signups. The problem was what happened after.</p>
+        </div>
+
+        <div class="funnel" style="margin-top: 32px; margin-bottom: 32px;">
+            <div class="funnel-title">Where users dropped off after registration</div>
+            <div class="funnel-row">
+                <div class="funnel-label">Activated (first deposit / transaction)</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 29%; background: var(--olive);"></div></div>
+                <div class="funnel-pct">29%</div>
+            </div>
+            <div class="funnel-row">
+                <div class="funnel-label">Verified identity, never added funds</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 12%; background: var(--warm-gray-light);"></div></div>
+                <div class="funnel-pct">12%</div>
+            </div>
+            <div class="funnel-row">
+                <div class="funnel-label">Opened app, abandoned KYC</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 21%; background: var(--warm-gray-light);"></div></div>
+                <div class="funnel-pct">21%</div>
+            </div>
+            <div class="funnel-row">
+                <div class="funnel-label">Never opened app after signup</div>
+                <div class="funnel-bar-wrap"><div class="funnel-bar" style="width: 38%; background: var(--cream-darker);"></div></div>
+                <div class="funnel-pct">38%</div>
+            </div>
+        </div>
+
+        <div class="friction-grid">
+            <div class="friction-card">
+                <div class="friction-card-title">Trust deficit</div>
+                <div class="friction-card-body">New users had heard about digital wallet scams. The welcome flow offered no reassurance at the exact moment they were deciding whether to deposit money.</div>
+            </div>
+            <div class="friction-card">
+                <div class="friction-card-title">KYC abandonment</div>
+                <div class="friction-card-body">Identity verification felt opaque and burdensome. Users dropped mid-flow with no explanation of why it was required or how long it would take.</div>
+            </div>
+            <div class="friction-card">
+                <div class="friction-card-title">No reason to act today</div>
+                <div class="friction-card-body">The app communicated features. It never gave users a specific, personal reason to add money right now.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STRATEGY -->
+    <div class="section" id="strategy">
+        <div class="section-header">
+            <div class="section-num">02</div>
+            <div>
+                <div class="section-nav-label">Strategy</div>
+                <h2 class="section-title">Segment by barrier, not by demographics</h2>
+            </div>
+        </div>
+
+        <div class="prose">
+            <p>Not all dormant users had the same problem. Each segment needed a different message, not a louder one.</p>
+        </div>
+
+        <div class="segments-grid">
+            <div class="seg-card">
+                <div class="seg-letter">Segment A</div>
+                <div class="seg-pct">38%</div>
+                <div class="seg-title">Unengaged after signup</div>
+                <div class="seg-barrier">Registered, never opened the app. Lost motivation or forgot entirely.</div>
+            </div>
+            <div class="seg-card">
+                <div class="seg-letter">Segment B</div>
+                <div class="seg-pct">21%</div>
+                <div class="seg-title">Stalled in verification</div>
+                <div class="seg-barrier">Started KYC, didn't finish. Friction or distrust mid-flow.</div>
+            </div>
+            <div class="seg-card">
+                <div class="seg-letter">Segment C</div>
+                <div class="seg-pct">12%</div>
+                <div class="seg-title">Verified but inactive</div>
+                <div class="seg-barrier">Completed identity check, never deposited. Trust — ready but uncertain.</div>
+            </div>
+            <div class="seg-card seg-excluded">
+                <div class="seg-letter">Segment D</div>
+                <div class="seg-pct">29%</div>
+                <div class="seg-title">Already activated</div>
+                <div class="seg-barrier">Excluded from this flow. Goes directly to onboarding & engagement lifecycle.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXECUTION -->
+    <div class="section" id="execution">
+        <div class="section-header">
+            <div class="section-num">03</div>
+            <div>
+                <div class="section-nav-label">Execution</div>
+                <h2 class="section-title">The 14-day activation Canvas</h2>
+            </div>
+        </div>
+
+        <div class="canvas">
+            <div class="canvas-day">
+                <div class="canvas-day-header">
+                    <div class="canvas-day-num">Day 0</div>
+                    <div class="canvas-day-title">Welcome + first hook</div>
+                    <div class="canvas-day-tag">All segments</div>
+                </div>
+                <div class="canvas-day-body">
+                    <div class="canvas-day-desc">Leads with a tangible benefit based on acquisition source. $5 bonus anchors urgency from day one.</div>
+                    <div class="canvas-messages">
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">Push</div>
+                            <div class="canvas-msg-text">"Welcome to NovaPay, [First Name]. Your $5 welcome bonus is waiting — make your first deposit to claim it."</div>
+                        </div>
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">Email</div>
+                            <div class="canvas-msg-text">Welcome email with social proof stats, security badges, and "make your first deposit in 3 steps."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-day">
+                <div class="canvas-day-header">
+                    <div class="canvas-day-num">Day 2</div>
+                    <div class="canvas-day-title">KYC friction remover</div>
+                    <div class="canvas-day-tag">Segment B only</div>
+                </div>
+                <div class="canvas-day-body">
+                    <div class="canvas-day-desc">Liquid logic detects exactly where the user stopped and addresses that specific moment. Not a generic reminder — a targeted nudge.</div>
+                    <div class="canvas-messages">
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">In-app</div>
+                            <div class="canvas-msg-text">"You're 60% done. Tap to finish in under 2 minutes."</div>
+                        </div>
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">SMS</div>
+                            <div class="canvas-msg-text">"Still need your ID? Here's what to have ready: front of ID + selfie. Takes 90 seconds."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-day">
+                <div class="canvas-day-header">
+                    <div class="canvas-day-num">Day 5</div>
+                    <div class="canvas-day-title">Trust sequence</div>
+                    <div class="canvas-day-tag">Segments B + C</div>
+                </div>
+                <div class="canvas-day-body">
+                    <div class="canvas-day-desc">For users who've verified but haven't deposited, the barrier is almost always trust. Regulatory credentials, protection language, user testimonials.</div>
+                    <div class="canvas-messages">
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">Email</div>
+                            <div class="canvas-msg-text">"Your money is protected. Here's how." — Full security explainer with regulatory logos and user testimonials.</div>
+                        </div>
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">Push</div>
+                            <div class="canvas-msg-text">"NovaPay is regulated by [authority]. Your funds are insured. Start with as little as $10."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-day">
+                <div class="canvas-day-header">
+                    <div class="canvas-day-num">Day 10</div>
+                    <div class="canvas-day-title">Bonus expiry warning</div>
+                    <div class="canvas-day-tag">All non-activated</div>
+                </div>
+                <div class="canvas-day-body">
+                    <div class="canvas-day-desc">Liquid personalizes by segment — unengaged users get social proof, skeptical users get "withdraw anytime, no lock-in."</div>
+                    <div class="canvas-messages">
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">Push</div>
+                            <div class="canvas-msg-text">"Your $5 bonus expires in 4 days, [Name]. Don't leave it on the table."</div>
+                        </div>
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">SMS</div>
+                            <div class="canvas-msg-text">"45,211 people joined this month. Your wallet is ready."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-day">
+                <div class="canvas-day-header">
+                    <div class="canvas-day-num">Day 14</div>
+                    <div class="canvas-day-title">Last attempt + sunset logic</div>
+                    <div class="canvas-day-tag">All non-activated</div>
+                </div>
+                <div class="canvas-day-body">
+                    <div class="canvas-day-desc">Users who still haven't activated are tagged as cold leads and moved to low-frequency re-engagement. Protects deliverability, keeps the door open.</div>
+                    <div class="canvas-messages">
+                        <div class="canvas-msg">
+                            <div class="canvas-msg-channel">Email</div>
+                            <div class="canvas-msg-text">"This is our last message about your bonus. Your account stays open — come back anytime."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPACT -->
+    <div class="section" id="impact">
+        <div class="section-header">
+            <div class="section-num">04</div>
+            <div>
+                <div class="section-nav-label">Impact</div>
+                <h2 class="section-title">Results within the 14-day window</h2>
+            </div>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">Activation Rate</div>
+                    <div class="metric-sublabel">Users completing a first transaction</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">29%</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">53%</span>
+                    <span class="metric-change">+83%</span>
+                </div>
+                <div class="metric-interp">Addressing each segment's specific barrier — not sending the same message louder — was what moved the number.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">KYC Completion</div>
+                    <div class="metric-sublabel">Segment B users finishing verification</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">41%</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">66%</span>
+                    <span class="metric-change">+61%</span>
+                </div>
+                <div class="metric-interp">Detecting exactly where users dropped off — and addressing that specific step — made re-engagement feel helpful, not generic.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">2nd Transaction Rate</div>
+                    <div class="metric-sublabel">Activated users transacting again within 30 days</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">1x</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">2.4x</span>
+                    <span class="metric-change">Quality signal</span>
+                </div>
+                <div class="metric-interp">Users who activated through trust-based messaging came back more — they joined with the right expectations, not just because of a bonus.</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-left">
+                    <div class="metric-label">CAC Waste</div>
+                    <div class="metric-sublabel">Registered users who never activated</div>
+                </div>
+                <div class="metric-numbers">
+                    <span class="metric-before">71%</span>
+                    <span class="metric-arrow">→</span>
+                    <span class="metric-after">47%</span>
+                    <span class="metric-change">−34%</span>
+                </div>
+                <div class="metric-interp">Recovering previously dormant signups meant the acquisition spend already invested started generating real returns.</div>
+            </div>
+        </div>
+
+        <!-- KEY LEARNINGS -->
+        <div style="margin-top: 56px;">
+            <div style="font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; color: var(--warm-black); letter-spacing: -0.5px; margin-bottom: 24px;">Key learnings</div>
+            <div class="learnings-grid">
+                <div class="learning-card">
+                    <div class="learning-num">01</div>
+                    <div class="learning-title">Segment by barrier, not demographics</div>
+                    <div class="learning-body">A 25-year-old and a 45-year-old who both completed KYC but never deposited have the same problem. Behavioral segmentation consistently outperforms demographic targeting.</div>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-num">02</div>
+                    <div class="learning-title">Day 0 is the highest-leverage moment</div>
+                    <div class="learning-body">Over 60% of activations happened within the first 48 hours. The welcome message had more impact than any urgency push later in the sequence.</div>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-num">03</div>
+                    <div class="learning-title">Exit conditions are non-negotiable</div>
+                    <div class="learning-body">Users who activated were immediately removed from the flow. Nothing damages trust faster than receiving a "make your first deposit" message after you already have.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tech-stack">
+        <span class="tech-stack-label">Built with</span>
+        <span class="tech-tag">Braze Canvas</span>
+        <span class="tech-tag">Liquid personalization</span>
+        <span class="tech-tag">Exit conditions</span>
+        <span class="tech-tag">Behavioral segmentation</span>
+        <span class="tech-tag">Send-time optimization</span>
+        <span class="tech-tag">Push</span>
+        <span class="tech-tag">Email</span>
+        <span class="tech-tag">SMS</span>
+        <span class="tech-tag">In-app</span>
+    </div>
+
+</div>
+
+<footer>
+    <div>
+        <div class="footer-name">Luis Lopez</div>
+        <div class="footer-sub">CRM & Lifecycle Marketing</div>
+    </div>
+    <a href="index.html" class="footer-back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Portfolio
+    </a>
+</footer>
+
+</body>
+</html>
